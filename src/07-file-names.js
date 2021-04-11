@@ -13,7 +13,27 @@
  * the output should be ["file", "file(1)", "image", "file(1)(1)", "file(2)"]
  *
  */
-// function renameFiles(names) {
-// }
+function renameFiles(names) {
+  const arr = Object.values(names);
+  const newArr = [];
 
-// module.exports = renameFiles;
+  for (let i = 0; i < arr.length; i++) {
+    newArr.push(arr[i]);
+  }
+  for (let i = 0; i < arr.length; i++) {
+    let count = 0;
+    for (let j = 0; j < i; j++) {
+      if (newArr[i] === newArr[j]) {
+        count += 1;
+      } else if (newArr[i] === arr[j]) {
+        count += 1;
+      }
+      if (count > 0) {
+        newArr[i] = `${arr[i]}(${count})`;
+      }
+    }
+  }
+  return newArr;
+}
+
+module.exports = renameFiles;
